@@ -33,7 +33,7 @@ const RegisterScreen = props => {
   const [errortext2, setErrortext2] = useState('');
   const [isRegistraionSuccess, setIsRegistraionSuccess] = useState(false);
 
-  const userPhoto = '../src/frlIf.png';
+  const userPhoto = '../../assets/frlIf.png';
 
   const idInputRef = createRef();
   const passwordInputRef = createRef();
@@ -124,7 +124,7 @@ const RegisterScreen = props => {
                 activeOpacity={0.5}
                 onPress={() => props.navigation.navigate('Login')}>
                 <Text style={{color: 'white', fontSize: wp('4%')}}>
-                  로그인하기
+                  Click to Sign In
                 </Text>
               </TouchableOpacity>
             </View>
@@ -138,20 +138,23 @@ const RegisterScreen = props => {
       <Loader loading={loading} />
       <View style={styles.topArea}>
         <View style={styles.titleArea}>
-          {/* <Image
-            source={require('../logo_256.png')}
-            style={{width: wp(40), resizeMode: 'contain'}}
-          /> */}
+          {
+            <Image
+              style={styles.ImageLogo}
+              source={require('../../assets/logo_128.png')}
+            />
+          }
         </View>
-        <View style={styles.TextArea}>
-          <Text style={styles.Text}>KHU Facial Recognition App</Text>
+        <View style={styles.TextAppArea}>
+          <Text style={styles.TextTitle}>AiKHUlock</Text>
+          <Text style={styles.TextIntro}>KHU Facial Recognition App</Text>
         </View>
       </View>
 
       <View style={styles.formArea}>
         <TextInput
           style={styles.textFormTop}
-          placeholder={'아이디(5자 이상, 영문, 숫자)'}
+          placeholder={'ID(5자 이상, 영문, 숫자)'}
           // eslint-disable-next-line no-shadow
           onChangeText={userId => setUserId(userId)}
           ref={idInputRef}
@@ -162,9 +165,9 @@ const RegisterScreen = props => {
           blurOnSubmit={false}
         />
         <TextInput
-          style={styles.textFormMiddle}
+          style={styles.textFormBottom}
           secureTextEntry={true}
-          placeholder={'비밀번호(8자 이상)'}
+          placeholder={'Password(8자 이상)'}
           onChangeText={UserPassword => setUserPassword(UserPassword)}
           ref={passwordInputRef}
           returnKeyType="next"
@@ -197,74 +200,94 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   topArea: {
-    flex: 1.5,
+    flex: 2,
   },
   titleArea: {
-    flex: 0.7,
+    flex: 2.1,
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
   },
-  TextArea: {
-    flex: 0.3,
+  ImageLogo: {
+    width: 32,
+    height: 32,
+  },
+  TextAppArea: {
+    flex: 1.8,
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
   },
   alertArea: {},
-  Text: {},
+  TextTitle: {
+    color: '#4282EF',
+    fontSize: 40,
+    fontFamily: 'Coiny-Regular',
+  },
+  TextIntro: {
+    color: 'black',
+    fontSize: 15,
+  },
   TextValidation: {
     color: 'red',
     // paddingTop: wp(5),
   },
 
   formArea: {
-    flex: 4,
+    flex: 1.7,
     justifyContent: 'center',
     // paddingTop: wp(10)
-    // backgroundColor: 'red',
+    //backgroundColor: 'red',
   },
 
   formArea2: {
-    flex: 2,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    // backgroundColor: 'red',
-    // alignSelf: 'stretch',
+    //backgroundColor: 'red',
+    //alignSelf: 'stretch',
   },
 
   textFormTop: {
-    borderWidth: 2,
-    borderBottomWidth: 1,
-    borderColor: 'black',
-    borderTopLeftRadius: 7,
-    borderTopRightRadius: 7,
-    width: '100%',
+    borderWidth: 1,
+    borderBottomWidth: 0.5,
+    borderColor: '#E0E0E0',
+    borderTopLeftRadius: 6,
+    borderTopRightRadius: 6,
+    borderBottomLeftRadius: 6,
+    borderBottomRightRadius: 6,
+    width: '90%',
     paddingLeft: 10,
     paddingRight: 10,
-  },
-  textFormMiddle: {
-    borderWidth: 2,
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: 'black',
-    width: '100%',
-    paddingLeft: 10,
-    paddingRight: 10,
+    marginTop: 60,
+    marginLeft: 20,
+    marginRight: 16,
+    marginBottom: 20,
+    backgroundColor: '#E0E0E0',
   },
   textFormBottom: {
-    borderWidth: 2,
-    borderTopWidth: 1,
-    borderColor: 'black',
-    borderBottomRightRadius: 7,
-    borderBottomLeftRadius: 7,
-    width: '100%',
+    borderWidth: 1,
+    borderBottomWidth: 0.5,
+    borderColor: '#E0E0E0',
+    borderTopLeftRadius: 6,
+    borderTopRightRadius: 6,
+    borderBottomLeftRadius: 6,
+    borderBottomRightRadius: 6,
+    width: '90%',
     paddingLeft: 10,
     paddingRight: 10,
+    marginLeft: 20,
+    marginRight: 16,
+    marginBottom: 20,
+    backgroundColor: '#E0E0E0',
   },
   btnArea: {
-    // backgroundColor: 'orange',
+    //backgroundColor: 'orange',
     justifyContent: 'center',
     alignItems: 'center',
   },
   btn: {
-    flex: 1,
+    flex: 3,
     width: '100%',
     borderRadius: 7,
     justifyContent: 'center',
