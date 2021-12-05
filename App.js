@@ -17,9 +17,28 @@ import {Image, StyleSheet} from 'react-native';
 import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 
 import SplashScreen from './src/Screen/SplashScreen';
-import LoginScreen from './src/Screen/LoginScreen';
-import RegisterScreen from './src/Screen/RegisterScreen';
-import HomeScreen from './src/Screen/HomeStackScreens/HomeScreen';
+import LoginScreen from './src/Screen/AuthStack/LoginScreen';
+import LoginReadyScreen from './src/Screen/AuthStack/LoginReadyScreen';
+import RegisterScreen from './src/Screen/AuthStack/RegisterScreen';
+
+import LoadingScreen from './src/Screen/Components/LoadingScreen';
+import LoadingFaceScreen from './src/Screen/Components/LoadingFaceScreen';
+import LoadingRPScreen from './src/Screen/Components/LoadingRPScreen';
+
+import MainScreen from './src/Screen/MainScreen';
+import UserSettingScreen from './src/Screen/UserSettingScreen';
+
+import RegFaceIDScreen from './src/Screen/RegFaceIDScreen';
+import UploadFaceImgScreen from './src/Screen/UploadFaceImgScreen';
+import FaceImgReadyScreen from './src/Screen/FaceImgReadyScreen';
+
+import ConnectRPScreen from './src/Screen/ConnectRPScreen';
+import SeachRaspberryPi from './src/Screen/SeachRaspberryPi';
+import RP_ReadyScreen from './src/Screen/RP_ReadyScreen';
+
+import DoorlockLogScreen from './src/Screen/DoorlockLogScreen';
+
+import CreditScreen from './src/Screen/CreditScreen';
 
 // import TestScreen from './Screen/TestStackScreens/TestScreen';
 // import TestCreateScreen from './Screen/TestStackScreens/TestCreateScreen';
@@ -49,40 +68,39 @@ const SettingStack = createStackNavigator();
 //   );
 // }
 
-const HomeStackScreen = ({navigation, route}) => {
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const getrouteName = async () => {
-    const routeName = await getFocusedRouteNameFromRoute(route);
+// const HomeStackScreen = ({navigation, route}) => {
+//   const getrouteName = async () => {
+//     const routeName = await getFocusedRouteNameFromRoute(route);
 
-    if (routeName === 'Home' || routeName === undefined) {
-      navigation.setOptions({tabBarVisible: true});
-    } else {
-      navigation.setOptions({tabBarVisible: false});
-    }
-    return routeName;
-  };
+//     if (routeName === 'Home' || routeName === undefined) {
+//       navigation.setOptions({tabBarVisible: true});
+//     } else {
+//       navigation.setOptions({tabBarVisible: false});
+//     }
+//     return routeName;
+//   };
 
-  useLayoutEffect(() => {}, [getrouteName, navigation, route]);
+//   useLayoutEffect(() => {}, [getrouteName, navigation, route]);
 
-  return (
-    <Stack.Navigator>
-      <HomeStack.Screen
-        name="Home"
-        options={({}) => ({
-          headerTitle: '',
-          headerLeft: () => (
-            <Image
-              //style={{width: wp(33), height: hp(3.5), resizeMode: 'contain'}}
-              source={require('./assets/logo_256.png')}
-            />
-          ),
-          tabBarVisible: true,
-        })}
-        component={HomeScreen}
-      />
-    </Stack.Navigator>
-  );
-};
+//   return (
+//     <Stack.Navigator>
+//       <HomeStack.Screen
+//         name="Home"
+//         options={({}) => ({
+//           headerTitle: '',
+//           headerLeft: () => (
+//             <Image
+//               style={{width: 256, height: 256, resizeMode: 'contain'}}
+//               source={require('./assets/logo_512.png')}
+//             />
+//           ),
+//           tabBarVisible: true,
+//         })}
+//         component={HomeScreen}
+//       />
+//     </Stack.Navigator>
+//   );
+// };
 
 // const SettingStackScreen = () => {
 //   return (
@@ -145,17 +163,133 @@ const Auth = () => {
         name="Login"
         component={LoginScreen}
         options={{
-          title: '',
-          headerBackTitleVisible: false,
+          headerShown: false,
         }}
       />
       <Stack.Screen
         name="Register"
         component={RegisterScreen}
         options={{
-          title: '',
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Loading"
+        component={LoadingScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="LoginReady"
+        component={LoginReadyScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const Home = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="MainHome"
+        component={MainScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const Menus = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Setting"
+        component={UserSettingScreen}
+        options={{
+          title: 'User Settings',
           headerBackTitleVisible: false,
         }}
+      />
+      <Stack.Screen
+        name="Log"
+        component={DoorlockLogScreen}
+        options={{
+          title: 'Doorlock Logs',
+          headerBackTitleVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="Credit"
+        component={CreditScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const FaceID = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="RegFaceID"
+        component={RegFaceIDScreen}
+        options={{title: 'Register FaceID', headerBackTitleVisible: false}}
+      />
+      <Stack.Screen
+        name="UploadFaceImg"
+        component={UploadFaceImgScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Loading"
+        component={LoadingFaceScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="FaceReady"
+        component={FaceImgReadyScreen}
+        options={{headerShown: false}}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const RaspberryPi = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="ConnectRP"
+        component={ConnectRPScreen}
+        options={{
+          title: 'Connect to Raspberry Pi',
+          headerBackTitleVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="SearchRP"
+        component={SeachRaspberryPi}
+        options={{
+          title: 'Search Raspberry Pi',
+          headerBackTitleVisible: false,
+        }}
+      />
+      <Stack.Screen
+        name="Loading"
+        component={LoadingRPScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="RPReady"
+        component={RP_ReadyScreen}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );
@@ -180,14 +314,29 @@ const App = () => {
           component={Auth}
           options={{headerShown: false}}
         />
-        {/* <Stack.Screen
-          name="MainTab"
-          // options={({route}) => ({
-          //   headerTitle: getHeaderTitle(route),
-          // })}
-          component={MainTabScreen}
+        <Stack.Screen
+          name="Main"
+          component={Home}
           options={{headerShown: false}}
-        /> */}
+        />
+        {/* Menus Navigator: Include Setting, Logs, and Credits */}
+        <Stack.Screen
+          name="Menus"
+          component={Menus}
+          options={{headerShown: false}}
+        />
+        {/* FaceID Navigator: Include Image select and Loading*/}
+        <Stack.Screen
+          name="FaceID"
+          component={FaceID}
+          options={{headerShown: false}}
+        />
+        {/* RP Navigator: Include RP connect and Loading*/}
+        <Stack.Screen
+          name="RaspberryPi"
+          component={RaspberryPi}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
       {/* <FlashMessage position="bottom" /> */}
     </NavigationContainer>

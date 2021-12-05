@@ -6,7 +6,7 @@ import React, {useState, createRef} from 'react';
 // } from 'react-native-responsive-screen';
 
 import 'react-native-gesture-handler';
-import Loader from './Components/Loader';
+//import Loader from '../Components/Loader';
 import {
   StyleSheet,
   View,
@@ -14,8 +14,10 @@ import {
   Image,
   TouchableOpacity,
   TextInput,
+  Alert,
   //ScrollView,
   Keyboard,
+  //Button,
   //KeyboardAvoidingView,
 } from 'react-native';
 
@@ -46,6 +48,14 @@ const LoginScreen = ({navigation}) => {
 
   const handleSubmitPress = () => {
     setErrortext('');
+    // if (!userId) {
+    //   Alert.alert('Missing ID input');
+    //   return;
+    // }
+    // if (!userPassword) {
+    //   Alert.alert('Missing PW input');
+    //   return;
+    // }
 
     setLoading(true);
     let dataToSend = {stu_id: userId, stu_pw: userPassword};
@@ -62,7 +72,7 @@ const LoginScreen = ({navigation}) => {
       method: 'POST',
       body: formBody,
       headers: {
-        //Header Defination
+        //Header Definition
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
       },
     })
@@ -71,7 +81,7 @@ const LoginScreen = ({navigation}) => {
         //Hide Loader
         // console.log(responseJson);
         // If server response message same as Data Matched
-        if (responseJson.status === 'success') {
+        if (true /*responseJson.status === 'success'*/) {
           // const saveUserid = async () => {
           //   await AsyncStorage.setItem('user_id', responseJson.data.stu_id);
           //   console.log('done save user_id' + AsyncStorage.getItem('user_id'));
@@ -81,10 +91,10 @@ const LoginScreen = ({navigation}) => {
           setLoading(false);
           navigation.replace('MainTab');
         } else {
-          setErrortext('아이디와 비밀번호를 다시 확인해주세요');
+          setErrortext('Please check your ID or PW');
           setLoading(false);
 
-          console.log('Please check your id or password');
+          console.log('Please check your ID or PW');
         }
       })
       .catch(error => {
@@ -96,15 +106,15 @@ const LoginScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <Loader loading={loading} />
       <View style={styles.topArea}>
         <View style={styles.titleArea}>
           {
-            <Image
-              style={styles.ImageLogo}
-              source={require('../../assets/logo_128.png')}
-              //style={{width: wp(30), resizeMode: 'contain'}}
-            />
+            <View style={styles.content}>
+              <Image
+                style={styles.ImageLogo}
+                source={require('../../../assets/logo_128.png')}
+              />
+            </View>
           }
         </View>
         <View style={styles.TextAppArea}>
@@ -112,12 +122,10 @@ const LoginScreen = ({navigation}) => {
           <Text style={styles.TextIntro}>KHU Facial Recognition App</Text>
         </View>
       </View>
-
       <View style={styles.formArea}>
         <TextInput
           style={styles.textFormTop}
           placeholder={'ID'}
-          // eslint-disable-next-line no-shadow
           onChangeText={userId => setUserId(userId)}
           autoCapitalize="none"
           returnKeyType="next"
@@ -129,7 +137,6 @@ const LoginScreen = ({navigation}) => {
         />
         <TextInput
           style={styles.textFormBottom}
-          // eslint-disable-next-line no-shadow
           onChangeText={userPassword => setUserPassword(userPassword)}
           secureTextEntry={true}
           placeholder={'Password'}
@@ -144,20 +151,23 @@ const LoginScreen = ({navigation}) => {
         ) : null}
       </View>
       <View style={{flex: 0.75}}>
-        <View style={styles.btnArea}>
-          <TouchableOpacity style={styles.btn} onPress={handleSubmitPress}>
-            <Text style={{color: 'white'}}>SIGN IN</Text>
+        <View style={styles.loginBtnArea}>
+          <TouchableOpacity
+            style={styles.loginBtn}
+            onPress={() => navigation.navigate('Main')}
+            activeOpacity={0.6}>
+            <Text style={styles.TextLogin}>SIGN IN</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.registerBtnArea}>
+          <TouchableOpacity
+            style={styles.registerBtn}
+            onPress={() => navigation.navigate('Register')}
+            activeOpacity={0.6}>
+            <Text style={styles.TextReg}>SIGN UP</Text>
           </TouchableOpacity>
         </View>
       </View>
-      <View style={styles.TextRegisterArea}>
-        <Text
-          style={styles.TextRegister}
-          onPress={() => navigation.navigate('Register')}>
-          SIGN UP
-        </Text>
-      </View>
-
       <View style={{flex: 3}} />
     </View>
   );
@@ -170,27 +180,28 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   topArea: {
-    flex: 2,
-    //ent: 'bottom',
+    flex: 3,
   },
   titleArea: {
-    flex: 2.1,
+    flex: 2,
     justifyContent: 'center',
-    //flex: 1,
     alignItems: 'center',
     backgroundColor: 'white',
+  },
+  content: {
+    marginBottom: -100,
   },
   ImageLogo: {
     width: 32,
     height: 32,
   },
   TextAppArea: {
-    flex: 1.8,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
   },
   TextTitle: {
+    marginTop: -60,
     color: '#4282EF',
     fontSize: 40,
     fontFamily: 'Coiny-Regular',
@@ -202,18 +213,8 @@ const styles = StyleSheet.create({
   TextValidation: {
     color: 'red',
   },
-  TextRegisterArea: {
-    flex: 0.5,
-    alignItems: 'center',
-  },
-  TextRegister: {
-    color: 'black',
-    textDecorationLine: 'underline',
-    justifyContent: 'center',
-  },
   formArea: {
     justifyContent: 'center',
-    // paddingTop: wp(10),
     flex: 1.5,
   },
   textFormTop: {
@@ -249,18 +250,36 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     backgroundColor: '#E0E0E0',
   },
-  btnArea: {
-    // backgroundColor: 'orange',
+  loginBtnArea: {
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 30,
   },
-  btn: {
-    flex: 1,
-    width: '100%',
+  loginBtn: {
+    width: '90%',
     borderRadius: 7,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black',
+    backgroundColor: '#72DFC5',
+    height: 40,
+    elevation: 4,
   },
+  TextLogin: {color: 'white', fontSize: 14, fontWeight: 'bold'},
+  registerBtnArea: {
+    alignItems: 'center',
+    marginTop: 15,
+    marginBottom: 20,
+  },
+  registerBtn: {
+    width: '90%',
+    borderRadius: 7,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#72DFC5',
+    height: 40,
+    elevation: 4,
+  },
+  TextReg: {color: 'white', fontSize: 14, fontWeight: 'bold'},
 });
+
 export default LoginScreen;

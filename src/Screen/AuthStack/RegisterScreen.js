@@ -7,7 +7,7 @@ import React, {useState, createRef} from 'react';
 
 import 'react-native-gesture-handler';
 //import RNPickerSelect, {defaultStyles} from 'react-native-picker-select';
-import Loader from './Components/Loader';
+//import Loader from './Components/Loader';
 
 import {
   StyleSheet,
@@ -22,7 +22,7 @@ import {
   //Platform,
 } from 'react-native';
 
-const RegisterScreen = props => {
+const RegisterScreen = ({navigation, props}) => {
   const preURL = '123';
 
   const [userId, setUserId] = useState('');
@@ -33,7 +33,7 @@ const RegisterScreen = props => {
   const [errortext2, setErrortext2] = useState('');
   const [isRegistraionSuccess, setIsRegistraionSuccess] = useState(false);
 
-  const userPhoto = '../../assets/frlIf.png';
+  const userPhoto = '../../../assets/frlIf.png';
 
   const idInputRef = createRef();
   const passwordInputRef = createRef();
@@ -93,14 +93,15 @@ const RegisterScreen = props => {
         <View style={{flex: 2}}>
           <View
             style={{
-              height: hp(13),
               justifyContent: 'center',
               alignItems: 'center',
             }}>
             <Image
-              source={require('../../assets/logo_256.png')}
+              source={require('../../../assets/success.png')}
               style={{
-                height: wp(20),
+                height: 32,
+                width: 32,
+                opacity: 0.5,
                 resizeMode: 'contain',
                 alignSelf: 'center',
               }}
@@ -108,23 +109,37 @@ const RegisterScreen = props => {
           </View>
           <View
             style={{
-              height: hp(7),
               justifyContent: 'center',
               alignItems: 'center',
             }}>
-            <Text style={{color: 'black', fontSize: wp('4%')}}>
-              회원가입이 완료되었습니다.
+            <Text
+              style={{
+                color: '#7F8083CC',
+                fontFamily: 'Coiny-Regular',
+                fontSize: 15,
+                marginBottom: 30,
+              }}>
+              Registration Success
             </Text>
           </View>
 
-          <View style={{height: hp(20), justifyContent: 'center'}}>
+          <View
+            style={{
+              height: 40,
+              justifyContent: 'center',
+            }}>
             <View style={styles.btnArea}>
               <TouchableOpacity
                 style={styles.btn}
-                activeOpacity={0.5}
-                onPress={() => props.navigation.navigate('Login')}>
-                <Text style={{color: 'white', fontSize: wp('4%')}}>
-                  Click to Sign In
+                activeOpacity={0.6}
+                onPress={() => navigation.navigate('Login')}>
+                <Text
+                  style={{
+                    color: 'white',
+                    fontWeight: 'bold',
+                    fontSize: 14,
+                  }}>
+                  CLICK to SIGN IN
                 </Text>
               </TouchableOpacity>
             </View>
@@ -133,16 +148,18 @@ const RegisterScreen = props => {
       </View>
     );
   }
+
   return (
     <View style={styles.container}>
-      <Loader loading={loading} />
       <View style={styles.topArea}>
         <View style={styles.titleArea}>
           {
-            <Image
-              style={styles.ImageLogo}
-              source={require('../../assets/logo_128.png')}
-            />
+            <View style={styles.content}>
+              <Image
+                style={styles.ImageLogo}
+                source={require('../../../assets/logo_128.png')}
+              />
+            </View>
           }
         </View>
         <View style={styles.TextAppArea}>
@@ -150,12 +167,10 @@ const RegisterScreen = props => {
           <Text style={styles.TextIntro}>KHU Facial Recognition App</Text>
         </View>
       </View>
-
       <View style={styles.formArea}>
         <TextInput
           style={styles.textFormTop}
           placeholder={'ID(5자 이상, 영문, 숫자)'}
-          // eslint-disable-next-line no-shadow
           onChangeText={userId => setUserId(userId)}
           ref={idInputRef}
           returnKeyType="next"
@@ -183,8 +198,12 @@ const RegisterScreen = props => {
 
       <View style={{flex: 0.75}}>
         <View style={styles.btnArea}>
-          <TouchableOpacity style={styles.btn} onPress={handleSubmitButton}>
-            <Text style={{color: 'white'}}>회원가입</Text>
+          <TouchableOpacity
+            style={styles.btn}
+            //onPress={handleSubmitButton}
+            onPress={() => navigation.navigate('Auth', {screen: 'Loading'})}
+            activeOpacity={0.6}>
+            <Text style={styles.TextBtn}>CREATE ACCOUNT</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -200,7 +219,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   topArea: {
-    flex: 2,
+    flex: 3.3,
   },
   titleArea: {
     flex: 2.1,
@@ -208,18 +227,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
   },
+  content: {
+    marginBottom: -90,
+  },
   ImageLogo: {
     width: 32,
     height: 32,
+    resizeMode: 'contain',
   },
   TextAppArea: {
-    flex: 1.8,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
   },
   alertArea: {},
   TextTitle: {
+    marginTop: -60,
     color: '#4282EF',
     fontSize: 40,
     fontFamily: 'Coiny-Regular',
@@ -230,24 +253,17 @@ const styles = StyleSheet.create({
   },
   TextValidation: {
     color: 'red',
-    // paddingTop: wp(5),
   },
-
   formArea: {
-    flex: 1.7,
+    flex: 1.5,
     justifyContent: 'center',
-    // paddingTop: wp(10)
-    //backgroundColor: 'red',
+    marginTop: 5,
   },
-
   formArea2: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    //backgroundColor: 'red',
-    //alignSelf: 'stretch',
   },
-
   textFormTop: {
     borderWidth: 1,
     borderBottomWidth: 0.5,
@@ -263,7 +279,7 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 16,
     marginBottom: 20,
-    backgroundColor: '#E0E0E0',
+    backgroundColor: 'white',
   },
   textFormBottom: {
     borderWidth: 1,
@@ -279,21 +295,23 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginRight: 16,
     marginBottom: 20,
-    backgroundColor: '#E0E0E0',
+    backgroundColor: 'white',
   },
   btnArea: {
-    //backgroundColor: 'orange',
     justifyContent: 'center',
     alignItems: 'center',
+    marginTop: -20,
   },
   btn: {
-    flex: 3,
-    width: '100%',
+    width: '90%',
     borderRadius: 7,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black',
+    backgroundColor: '#72DFC5',
+    height: 40,
+    elevation: 4,
   },
+  TextBtn: {color: 'white', fontSize: 14, fontWeight: 'bold'},
   inputIOS: {
     borderWidth: 2,
     borderTopWidth: 1,
