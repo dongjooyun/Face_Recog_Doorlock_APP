@@ -18,11 +18,11 @@ export function ImagePickerModal({
       style={styles.modal}>
       <SafeAreaView style={styles.buttons}>
         <Pressable style={styles.button} onPress={onImageLibraryPress}>
-          <Image style={styles.buttonIcon} source={images.image} />
-          <Text style={styles.buttonText}>Library</Text>
+          <Image style={styles.ImgButtonIcon} source={images.image} />
+          <Text style={styles.buttonText}>Gallery</Text>
         </Pressable>
         <Pressable style={styles.button} onPress={onCameraPress}>
-          <Image style={styles.buttonIcon} source={images.camera} />
+          <Image style={styles.CamButtonIcon} source={images.camera} />
           <Text style={styles.buttonText}>Camera</Text>
         </Pressable>
       </SafeAreaView>
@@ -51,9 +51,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  ImgButtonIcon: {width: 30, height: 30, margin: 10},
+  CamButtonIcon: {width: 30, height: 30, margin: 10},
   buttonText: {
     fontSize: 14,
     fontWeight: '600',
+    color: '#4282EF',
   },
 });
 //export default ImagePickerModal;
