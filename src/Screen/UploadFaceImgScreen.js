@@ -12,23 +12,26 @@ const UploadFaceImgScreen = () => {
 
   const onImageLibraryPress = useCallback(() => {
     const options = {
-      selectionLimit: 1,
+      selectionLimit: 0, //allow any number of files
       mediaType: 'photo',
       includeBase64: false,
     };
     ImagePicker.launchImageLibrary(options, setPickerResponse);
   }, []);
 
-  const onCameraPress = React.useCallback(() => {
+  const onCameraPress = useCallback(() => {
     const options = {
       saveToPhotos: true,
       mediaType: 'photo',
       includeBase64: false,
+      cameraType: 'front',
     };
     ImagePicker.launchCamera(options, setPickerResponse);
   }, []);
 
-  const uri = pickerResponse?.assets && pickerResponse.assets[0].uri;
+  for (let i = 0; i < 3; i++) {
+    const uri = pickerResponse?.assets && pickerResponse.assets[i].uri;
+  }
 
   return (
     <View style={styles.screen}>

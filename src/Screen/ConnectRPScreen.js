@@ -14,6 +14,8 @@ import {
 import {BorderlessButton} from 'react-native-gesture-handler';
 
 const ConnectRPScreen = ({navigation}) => {
+  const [visible, setVisible] = useState(false);
+
   return (
     <View style={styles.container}>
       <View style={styles.settingFaceArea}>
@@ -24,8 +26,9 @@ const ConnectRPScreen = ({navigation}) => {
       <View style={styles.regImgBtnArea}>
         <TouchableOpacity
           style={styles.regImgBtn}
-          onPress={() =>
-            navigation.navigate('RaspberryPi', {screen: 'SearchRP'})
+          onPress={
+            () => setVisible(true)
+            //navigation.navigate('RaspberryPi', {screen: 'SearchRP'})
           } //Search 화면 구현 필요
           activeOpacity={0.6}>
           <Text style={styles.TextRegImgBtn}>Search</Text>
@@ -34,10 +37,12 @@ const ConnectRPScreen = ({navigation}) => {
       <View style={styles.ImgInfoArea}>
         <View style={styles.InfoArea}>
           <View style={styles.TextRP_IDArea}>
-            <Text style={styles.TextInfoTitle}>New Raspberry Pi ID</Text>
+            <Text style={styles.TextInfoTitle}>New Raspberry Pi IP</Text>
           </View>
           <View style={styles.TextRP_IDArea}>
-            <Text style={styles.TextInfo}>KHURP1234</Text>
+            <Text style={styles.TextInfo} onClose={() => setVisible(false)}>
+              172.30.6.66:8081
+            </Text>
           </View>
         </View>
 

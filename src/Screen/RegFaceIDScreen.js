@@ -1,4 +1,4 @@
-import React, {useState, createRef, Component} from 'react';
+import React, {useState, createRef, Component, useCallback} from 'react';
 import 'react-native-gesture-handler';
 //import Loader from './Components/Loader';
 import {
@@ -13,7 +13,38 @@ import {
   //KeyboardAvoidingView,
 } from 'react-native';
 
+import * as ImagePicker from 'react-native-image-picker';
+import {ImagePickerModal} from './Components/ImagePickerModal';
+import {ImagePickerAvatar} from './Components/ImagePickerAvatar';
+
 const RegFaceIDScreen = ({navigation, props}) => {
+  const [pickerResponse, setPickerResponse] = useState(null);
+  const [visible, setVisible] = useState(false);
+
+  const onImageLibraryPress = useCallback(() => {
+    const options = {
+      selectionLimit: 0, //0: allow any number of files
+      mediaType: 'photo',
+      includeBase64: false,
+    };
+    ImagePicker.launchImageLibrary(options, setPickerResponse);
+  }, []);
+
+  const onCameraPress = useCallback(() => {
+    const options = {
+      saveToPhotos: true,
+      mediaType: 'photo',
+      includeBase64: false,
+      cameraType: 'front',
+    };
+    ImagePicker.launchCamera(options, setPickerResponse);
+  }, []);
+  //for (let i = 0; i < 3; i++) {
+  const uri = pickerResponse?.assets && pickerResponse.assets[0].uri;
+  //}
+  const uri1 = pickerResponse?.assets && pickerResponse.assets[1].uri;
+  const uri2 = pickerResponse?.assets && pickerResponse.assets[2].uri;
+
   return (
     <View style={styles.container}>
       <View style={styles.settingFaceArea}>
@@ -24,11 +55,14 @@ const RegFaceIDScreen = ({navigation, props}) => {
       <View style={styles.regImgBtnArea}>
         <TouchableOpacity
           style={styles.regImgBtn}
-          onPress={() =>
-            navigation.navigate('FaceID', {screen: 'UploadFaceImg'})
+          uri={uri}
+          //uri1={uri1}
+          //uri2={uri2}
+          onPress={
+            () => setVisible(true) //navigation.navigate('FaceID', {screen: 'UploadFaceImg'})
           }
           activeOpacity={0.6}>
-          <Text style={styles.TextRegImgBtn}>Select Images from Gallery</Text>
+          <Text style={styles.TextRegImgBtn}>Upload Facial Images</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.ImgInfoArea}>
@@ -41,6 +75,12 @@ const RegFaceIDScreen = ({navigation, props}) => {
           </View>
         </View>
       </View>
+      <ImagePickerAvatar
+        uri={uri}
+        uri1={uri1}
+        uri2={uri2}
+        onPress={() => setVisible(true)}
+      />
       <View style={styles.connectBtnArea}>
         <TouchableOpacity
           style={styles.connectBtn}
@@ -49,6 +89,12 @@ const RegFaceIDScreen = ({navigation, props}) => {
           <Text style={styles.TextConnect}>Create FaceID</Text>
         </TouchableOpacity>
       </View>
+      <ImagePickerModal
+        isVisible={visible}
+        onClose={() => setVisible(false)}
+        onImageLibraryPress={onImageLibraryPress}
+        onCameraPress={onCameraPress}
+      />
     </View>
   );
 };
@@ -58,6 +104,10 @@ const styles = StyleSheet.create({
     flex: 1, //전체의 공간을 차지한다는 의미
     flexDirection: 'column',
     backgroundColor: 'white',
+  },
+  screen: {
+    flex: 1,
+    backgroundColor: '#f2f2fC',
   },
   settingTitleArea: {
     justifyContent: 'center',
@@ -123,7 +173,7 @@ const styles = StyleSheet.create({
   connectBtnArea: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 420,
+    marginBottom: 30,
   },
   connectBtn: {
     width: '90%',
