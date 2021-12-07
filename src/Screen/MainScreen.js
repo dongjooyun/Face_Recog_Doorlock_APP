@@ -57,7 +57,7 @@ const MainScreen = ({navigation, props}) => {
             activeOpacity={0.6}>
             <Text style={styles.TextLog}>Doorlock Logs</Text>
             <View style={styles.numOfLogsArea}>
-              <Text style={styles.numOfLogs}>2</Text>
+              <Text style={styles.numOfLogs}> 2</Text>
             </View>
           </TouchableOpacity>
         </View>

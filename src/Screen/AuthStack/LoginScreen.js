@@ -18,7 +18,7 @@ import {
   //ScrollView,
   Keyboard,
   //Button,
-  //KeyboardAvoidingView,
+  KeyboardAvoidingView,
 } from 'react-native';
 
 import AsyncStorage from '@react-native-community/async-storage';
@@ -106,23 +106,19 @@ const LoginScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.topArea}>
-        <View style={styles.titleArea}>
-          {
-            <View style={styles.content}>
-              <Image
-                style={styles.ImageLogo}
-                source={require('../../../assets/logo_128.png')}
-              />
-            </View>
-          }
+      <KeyboardAvoidingView style={styles.keyboardAvoiding}>
+        <View style={styles.topArea}>
+          <View style={styles.titleArea}>
+            <Image
+              style={styles.ImageLogo}
+              source={require('../../../assets/logo_128.png')}
+            />
+          </View>
+          <View style={styles.TextAppArea}>
+            <Text style={styles.TextTitle}>AiKHUlock</Text>
+            <Text style={styles.TextIntro}>KHU Facial Recognition App</Text>
+          </View>
         </View>
-        <View style={styles.TextAppArea}>
-          <Text style={styles.TextTitle}>AiKHUlock</Text>
-          <Text style={styles.TextIntro}>KHU Facial Recognition App</Text>
-        </View>
-      </View>
-      <View style={styles.formArea}>
         <TextInput
           style={styles.textFormTop}
           placeholder={'ID'}
@@ -149,26 +145,26 @@ const LoginScreen = ({navigation}) => {
         {errortext !== '' ? (
           <Text style={styles.TextValidation}> {errortext}</Text>
         ) : null}
-      </View>
-      <View style={{flex: 0.75}}>
-        <View style={styles.loginBtnArea}>
-          <TouchableOpacity
-            style={styles.loginBtn}
-            onPress={() => navigation.navigate('Main')}
-            activeOpacity={0.6}>
-            <Text style={styles.TextLogin}>SIGN IN</Text>
-          </TouchableOpacity>
+
+        <View style={styles.BtnArea}>
+          <View style={styles.loginBtnArea}>
+            <TouchableOpacity
+              style={styles.loginBtn}
+              onPress={() => navigation.navigate('Main')}
+              activeOpacity={0.6}>
+              <Text style={styles.TextLogin}>SIGN IN</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.registerBtnArea}>
+            <TouchableOpacity
+              style={styles.registerBtn}
+              onPress={() => navigation.navigate('Register')}
+              activeOpacity={0.6}>
+              <Text style={styles.TextReg}>SIGN UP</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={styles.registerBtnArea}>
-          <TouchableOpacity
-            style={styles.registerBtn}
-            onPress={() => navigation.navigate('Register')}
-            activeOpacity={0.6}>
-            <Text style={styles.TextReg}>SIGN UP</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-      <View style={{flex: 3}} />
+      </KeyboardAvoidingView>
     </View>
   );
 };
@@ -179,27 +175,27 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: 'white',
   },
+  keyboardAvoiding: {
+    flex: 1,
+  },
   topArea: {
-    flex: 3,
+    flex: 1,
   },
   titleArea: {
-    flex: 2,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
   },
   content: {
-    marginBottom: -100,
+    marginBottom: -50,
   },
   ImageLogo: {
     width: 32,
     height: 32,
+    marginTop: 150,
   },
-  TextAppArea: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-  },
+  TextAppArea: {justifyContent: 'center', alignItems: 'center'},
   TextTitle: {
     marginTop: -60,
     color: '#4282EF',
@@ -209,14 +205,12 @@ const styles = StyleSheet.create({
   TextIntro: {
     color: 'black',
     fontSize: 15,
+    marginTop: -5,
   },
   TextValidation: {
     color: 'red',
   },
-  formArea: {
-    justifyContent: 'center',
-    flex: 1.5,
-  },
+
   textFormTop: {
     borderWidth: 1,
     borderBottomWidth: 0.5,
@@ -228,10 +222,10 @@ const styles = StyleSheet.create({
     width: '90%',
     paddingLeft: 10,
     paddingRight: 10,
-    marginTop: 60,
+    marginTop: 40,
     marginLeft: 20,
     marginRight: 16,
-    marginBottom: 20,
+    marginBottom: 10,
     backgroundColor: '#E0E0E0',
   },
   textFormBottom: {
@@ -247,13 +241,16 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     marginLeft: 20,
     marginRight: 16,
-    marginBottom: 20,
+    marginBottom: 0,
     backgroundColor: '#E0E0E0',
+  },
+  BtnArea: {
+    flex: 1,
   },
   loginBtnArea: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 30,
+    marginTop: 50,
   },
   loginBtn: {
     width: '90%',
@@ -267,7 +264,7 @@ const styles = StyleSheet.create({
   TextLogin: {color: 'white', fontSize: 14, fontWeight: 'bold'},
   registerBtnArea: {
     alignItems: 'center',
-    marginTop: 15,
+    marginTop: 10,
     marginBottom: 20,
   },
   registerBtn: {

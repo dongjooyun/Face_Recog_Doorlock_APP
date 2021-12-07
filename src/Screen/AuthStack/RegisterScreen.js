@@ -16,7 +16,7 @@ import {
   Image,
   TouchableOpacity,
   TextInput,
-  //Keyboard,
+  KeyboardAvoidingView,
   //Modal,
   //ScrollView,
   //Platform,
@@ -151,23 +151,21 @@ const RegisterScreen = ({navigation, props}) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.topArea}>
-        <View style={styles.titleArea}>
-          {
-            <View style={styles.content}>
+      <KeyboardAvoidingView style={styles.keyboardAvoiding}>
+        <View style={styles.topArea}>
+          <View style={styles.titleArea}>
+            {
               <Image
                 style={styles.ImageLogo}
                 source={require('../../../assets/logo_128.png')}
               />
-            </View>
-          }
+            }
+          </View>
+          <View style={styles.TextAppArea}>
+            <Text style={styles.TextTitle}>AiKHUlock</Text>
+            <Text style={styles.TextIntro}>KHU Facial Recognition App</Text>
+          </View>
         </View>
-        <View style={styles.TextAppArea}>
-          <Text style={styles.TextTitle}>AiKHUlock</Text>
-          <Text style={styles.TextIntro}>KHU Facial Recognition App</Text>
-        </View>
-      </View>
-      <View style={styles.formArea}>
         <TextInput
           style={styles.textFormTop}
           placeholder={'ID(5자 이상, 영문, 숫자)'}
@@ -188,15 +186,11 @@ const RegisterScreen = ({navigation, props}) => {
           returnKeyType="next"
           blurOnSubmit={false}
         />
-      </View>
 
-      <View style={{flex: 0.7, justifyContent: 'center'}}>
         {errortext2 !== '' ? (
           <Text style={styles.TextValidation}>{errortext2}</Text>
         ) : null}
-      </View>
 
-      <View style={{flex: 0.75}}>
         <View style={styles.btnArea}>
           <TouchableOpacity
             style={styles.btn}
@@ -206,8 +200,7 @@ const RegisterScreen = ({navigation, props}) => {
             <Text style={styles.TextBtn}>CREATE ACCOUNT</Text>
           </TouchableOpacity>
         </View>
-      </View>
-      <View style={{flex: 3}} />
+      </KeyboardAvoidingView>
     </View>
   );
 };
@@ -218,27 +211,31 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: 'white',
   },
+  keyboardAvoiding: {
+    flex: 1,
+  },
   topArea: {
-    flex: 3.3,
+    flex: 1,
   },
   titleArea: {
-    flex: 2.1,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
   },
   content: {
-    marginBottom: -90,
+    marginBottom: -50,
   },
   ImageLogo: {
     width: 32,
     height: 32,
-    resizeMode: 'contain',
+    marginTop: 150,
   },
   TextAppArea: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    marginBottom: -20,
+    //backgroundColor: 'white',
   },
   alertArea: {},
   TextTitle: {
@@ -250,19 +247,10 @@ const styles = StyleSheet.create({
   TextIntro: {
     color: 'black',
     fontSize: 15,
+    marginTop: -5,
   },
   TextValidation: {
     color: 'red',
-  },
-  formArea: {
-    flex: 1.5,
-    justifyContent: 'center',
-    marginTop: 5,
-  },
-  formArea2: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   textFormTop: {
     borderWidth: 1,
@@ -278,7 +266,7 @@ const styles = StyleSheet.create({
     marginTop: 60,
     marginLeft: 20,
     marginRight: 16,
-    marginBottom: 20,
+    marginBottom: 10,
     backgroundColor: 'white',
   },
   textFormBottom: {
@@ -294,13 +282,15 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     marginLeft: 20,
     marginRight: 16,
-    marginBottom: 20,
+    marginBottom: 0,
     backgroundColor: 'white',
   },
   btnArea: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: -20,
+    flex: 1,
+    //marginTop: 40,
+    //marginBottom: 20,
   },
   btn: {
     width: '90%',
@@ -312,20 +302,6 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   TextBtn: {color: 'white', fontSize: 14, fontWeight: 'bold'},
-  inputIOS: {
-    borderWidth: 2,
-    borderTopWidth: 1,
-    borderColor: 'black',
-    borderBottomRightRadius: 7,
-    borderBottomLeftRadius: 7,
-    width: '100%',
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-  scrollContainer: {
-    flex: 1,
-    paddingHorizontal: 15,
-  },
 });
 
 export default RegisterScreen;
