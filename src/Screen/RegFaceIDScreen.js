@@ -56,8 +56,8 @@ const RegFaceIDScreen = ({navigation, props}) => {
         <TouchableOpacity
           style={styles.regImgBtn}
           uri={uri}
-          //uri1={uri1}
-          //uri2={uri2}
+          uri1={uri1}
+          uri2={uri2}
           onPress={
             () => setVisible(true) //navigation.navigate('FaceID', {screen: 'UploadFaceImg'})
           }
@@ -71,7 +71,7 @@ const RegFaceIDScreen = ({navigation, props}) => {
             <Text style={styles.TextInfoTitle}>Uploaded Images</Text>
           </View>
           <View style={styles.TextNumOfImgArea}>
-            <Text style={styles.TextInfo}>3</Text>
+            <Text style={styles.TextInfo}>0</Text>
           </View>
         </View>
       </View>

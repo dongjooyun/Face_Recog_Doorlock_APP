@@ -223,9 +223,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
   },
-  content: {
-    marginBottom: -50,
-  },
   ImageLogo: {
     width: 32,
     height: 32,
@@ -234,12 +231,11 @@ const styles = StyleSheet.create({
   TextAppArea: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: -20,
-    //backgroundColor: 'white',
+    //marginBottom: -5,
+    backgroundColor: 'white',
   },
-  alertArea: {},
   TextTitle: {
-    marginTop: -60,
+    marginTop: -50,
     color: '#4282EF',
     fontSize: 40,
     fontFamily: 'Coiny-Regular',
@@ -254,6 +250,7 @@ const styles = StyleSheet.create({
   },
   textFormTop: {
     borderWidth: 1,
+    //height: 47.5,
     borderBottomWidth: 0.5,
     borderColor: '#E0E0E0',
     borderTopLeftRadius: 6,
@@ -263,7 +260,7 @@ const styles = StyleSheet.create({
     width: '90%',
     paddingLeft: 10,
     paddingRight: 10,
-    marginTop: 60,
+    marginTop: 40,
     marginLeft: 20,
     marginRight: 16,
     marginBottom: 10,
@@ -271,6 +268,7 @@ const styles = StyleSheet.create({
   },
   textFormBottom: {
     borderWidth: 1,
+    //height: 47.5,
     borderBottomWidth: 0.5,
     borderColor: '#E0E0E0',
     borderTopLeftRadius: 6,
@@ -286,7 +284,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   btnArea: {
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
     flex: 1,
     //marginTop: 40,
@@ -300,6 +298,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#72DFC5',
     height: 40,
     elevation: 4,
+    marginTop: 20,
   },
   TextBtn: {color: 'white', fontSize: 14, fontWeight: 'bold'},
 });

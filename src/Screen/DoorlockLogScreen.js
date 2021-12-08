@@ -20,53 +20,34 @@ const DoorlockLogScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
-        <View style={styles.FaceArea}>
-          <View style={styles.settingTitleArea}>
-            <Text style={styles.TextSettingFace}>2021-11-25 21:30:16</Text>
-          </View>
-
-          <View style={styles.FaceInfoArea}>
-            <View style={styles.settingAuthArea}>
-              <Text style={styles.TextSettingRP}>Authorized Person</Text>
+        {
+          <View style={styles.RPArea}>
+            <View style={styles.settingWarnTitleArea}>
+              <Text style={styles.TextSettingRP}>2021-12-07 17:46:30</Text>
             </View>
-            {
-              //안면 이미지
-              <Image style={styles.AuthImage} source={images.auth} />
-            }
-          </View>
-          <View style={styles.regFaceBtnArea}>
-            <TouchableOpacity
-              style={styles.regFaceBtn}
-              onPress={() => navigation.navigate('Main', {screen: 'MainHome'})}
-              activeOpacity={0.6}>
-              <Text style={styles.TextRegFaceBtn}>Save Logs & Images</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        <View style={styles.RPArea}>
-          <View style={styles.settingWarnTitleArea}>
-            <Text style={styles.TextSettingRP}>2021-11-25 11:26:30</Text>
-          </View>
-
-          <View style={styles.RPInfoArea}>
-            <View style={styles.settingUnAuthArea}>
-              <Text style={styles.TextSettingRP}>Unauthorized Person</Text>
+            <View style={styles.RPInfoArea}>
+              <View style={styles.settingUnAuthArea}>
+                <Text style={styles.TextSettingRP}>Unauthorized Person</Text>
+              </View>
+              {
+                //안면 이미지
+                <Image style={styles.UnAuthImage} source={images.unauth} />
+              }
             </View>
-            {
-              //안면 이미지
-              <Image style={styles.UnAuthImage} source={images.unauth} />
-            }
+            <View style={styles.settingWarnTitleArea}>
+              <Text style={styles.TextSettingRP}>2021-12-07 17:34:56</Text>
+            </View>
+            <View style={styles.RPInfoArea}>
+              <View style={styles.settingUnAuthArea}>
+                <Text style={styles.TextSettingRP}>Unauthorized Person</Text>
+              </View>
+              {
+                //안면 이미지
+                <Image style={styles.UnAuthImage1} source={images.unauth1} />
+              }
+            </View>
           </View>
-          <View style={styles.connectRPbtnArea}>
-            <TouchableOpacity
-              style={styles.connectRPbtn}
-              onPress={() => navigation.navigate('Main', {screen: 'MainHome'})}
-              activeOpacity={0.6}>
-              <Text style={styles.TextConnectRPBtn}>Save Logs & Images</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
+        }
       </ScrollView>
     </SafeAreaView>
   );
@@ -110,8 +91,8 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   AuthImage: {
-    height: 300,
-    width: 200,
+    height: 200,
+    width: 250,
     overflow: 'hidden',
     borderColor: '#4282EF',
     borderWidth: 4,
@@ -119,8 +100,17 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   UnAuthImage: {
-    height: 300,
-    width: 200,
+    height: 200,
+    width: 250,
+    overflow: 'hidden',
+    borderColor: '#C9322B',
+    borderWidth: 4,
+    borderRadius: 6,
+    margin: 20,
+  },
+  UnAuthImage1: {
+    height: 200,
+    width: 250,
     overflow: 'hidden',
     borderColor: '#C9322B',
     borderWidth: 4,

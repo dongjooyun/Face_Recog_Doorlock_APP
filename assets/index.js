@@ -8,4 +8,5 @@ export const images = {
   camera: require('./cam.png'),
   auth: require('./auth.png'),
   unauth: require('./unauth.jpg'),
+  unauth1: require('./unAuth1.jpg'),
 };

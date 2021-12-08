@@ -180,6 +180,7 @@ const styles = StyleSheet.create({
   },
   topArea: {
     flex: 1,
+    backgroundColor: 'white',
   },
   titleArea: {
     flex: 1,
@@ -187,17 +188,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
   },
-  content: {
-    marginBottom: -50,
-  },
   ImageLogo: {
     width: 32,
     height: 32,
     marginTop: 150,
   },
-  TextAppArea: {justifyContent: 'center', alignItems: 'center'},
+  TextAppArea: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+  },
   TextTitle: {
-    marginTop: -60,
+    marginTop: -50,
     color: '#4282EF',
     fontSize: 40,
     fontFamily: 'Coiny-Regular',
@@ -246,11 +248,12 @@ const styles = StyleSheet.create({
   },
   BtnArea: {
     flex: 1,
+    justifyContent: 'flex-start',
   },
   loginBtnArea: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 50,
+    marginTop: 20,
   },
   loginBtn: {
     width: '90%',

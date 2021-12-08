@@ -52,7 +52,9 @@ const ConnectRPScreen = ({navigation}) => {
       <View style={styles.connectBtnArea}>
         <TouchableOpacity
           style={styles.connectBtn}
-          onPress={() => navigation.navigate('FaceID', {screen: 'Loading'})}
+          onPress={() =>
+            navigation.navigate('RaspberryPi', {screen: 'Loading'})
+          }
           activeOpacity={0.6}>
           <Text style={styles.TextConnect}>Connect</Text>
         </TouchableOpacity>

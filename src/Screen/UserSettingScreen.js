@@ -26,7 +26,7 @@ const UserSettingScreen = ({navigation}) => {
               <Text style={styles.TextInfoTitle}>UserID</Text>
             </View>
             <View style={styles.TextUserIDArea}>
-              <Text style={styles.TextInfo}>@djyun</Text>
+              <Text style={styles.TextInfo}>@djyun16</Text>
             </View>
           </View>
           <View style={styles.InfoArea}>
@@ -34,7 +34,7 @@ const UserSettingScreen = ({navigation}) => {
               <Text style={styles.TextInfoTitle}>isFaceRegistered</Text>
             </View>
             <View style={styles.TextisFaceRegArea}>
-              <Text style={styles.TextInfo}>not yet</Text>
+              <Text style={styles.TextInfo}>registered</Text>
             </View>
           </View>
           <View style={styles.InfoArea}>
@@ -42,7 +42,7 @@ const UserSettingScreen = ({navigation}) => {
               <Text style={styles.TextInfoTitle}>FaceID</Text>
             </View>
             <View style={styles.TextFaceIDArea}>
-              <Text style={styles.TextInfo}>KHUF1</Text>
+              <Text style={styles.TextInfo}>a-1</Text>
             </View>
           </View>
           <View style={styles.regFaceBtnArea}>
@@ -57,33 +57,6 @@ const UserSettingScreen = ({navigation}) => {
           </View>
         </View>
       </View>
-
-      <View style={styles.RPArea}>
-        <View style={styles.settingTitleArea}>
-          <Text style={styles.TextSettingRP}>Raspberry Pi Settings</Text>
-        </View>
-
-        <View style={styles.RPInfoArea}>
-          <View style={styles.TextRPIDArea}>
-            <Text style={styles.TextInfoTitle}>Raspberry Pi ID</Text>
-          </View>
-          <View style={styles.TextRPIDArea}>
-            <Text style={styles.TextInfo}>KHURP1</Text>
-          </View>
-          <View style={styles.connectRPbtnArea}>
-            <TouchableOpacity
-              style={styles.connectRPbtn}
-              onPress={() =>
-                navigation.navigate('RaspberryPi', {screen: 'ConnectRP'})
-              }
-              activeOpacity={0.6}>
-              <Text style={styles.TextConnectRPBtn}>
-                Connect to Raspberry Pi
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
     </View>
   );
 };
@@ -94,10 +67,11 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: 'white',
   },
-  FaceArea: {flex: 1.5},
+  FaceArea: {flex: 2.5},
   RPArea: {flex: 1},
 
   settingTitleArea: {
+    flex: 0.7,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#4282EF',
@@ -112,12 +86,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   FaceInfoArea: {
-    //flex: 8,
+    flex: 7,
     justifyContent: 'center',
     //alignItems: 'center',
-    marginTop: 30,
+    marginTop: 60,
     //marginBottom: 20,
-    marginLeft: 10,
+    marginLeft: 20,
   },
   InfoArea: {marginBottom: 30},
 
@@ -139,8 +113,8 @@ const styles = StyleSheet.create({
   regFaceBtnArea: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 40,
-    marginLeft: -10,
+    marginTop: 80,
+    marginLeft: -20,
   },
   regFaceBtn: {
     width: '90%',

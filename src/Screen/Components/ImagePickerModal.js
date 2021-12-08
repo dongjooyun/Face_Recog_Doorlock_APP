@@ -21,10 +21,6 @@ export function ImagePickerModal({
           <Image style={styles.ImgButtonIcon} source={images.image} />
           <Text style={styles.buttonGalleryText}>Gallery</Text>
         </Pressable>
-        <Pressable style={styles.button} onPress={onCameraPress}>
-          <Image style={styles.CamButtonIcon} source={images.camera} />
-          <Text style={styles.buttonCameraText}>Camera</Text>
-        </Pressable>
       </SafeAreaView>
     </Modal>
   );

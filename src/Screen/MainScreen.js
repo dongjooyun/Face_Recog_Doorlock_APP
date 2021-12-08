@@ -37,7 +37,7 @@ const MainScreen = ({navigation, props}) => {
           />
         </View>
         <View style={styles.TextIDArea}>
-          <Text style={styles.TextID}>@djyun</Text>
+          <Text style={styles.TextID}>@djyun16</Text>
         </View>
       </View>
 
@@ -160,7 +160,8 @@ const styles = StyleSheet.create({
     height: 18,
     borderRadius: 3,
     color: 'white',
-    backgroundColor: '#C9322B',
+
+    backgroundColor: '#C9322B', //'#4282EF',
     marginLeft: 110,
     marginTop: -25,
     position: 'absolute',

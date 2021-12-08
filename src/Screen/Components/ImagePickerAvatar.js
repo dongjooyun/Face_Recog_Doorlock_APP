@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     borderColor: '#72DFC5',
     borderWidth: 4,
     borderRadius: 260 / 2,
-    margin: 20,
+    margin: 25,
   },
   // addButton: {
   //   height: 54,
